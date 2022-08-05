@@ -1,0 +1,105 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '7.1.1' apply false
+    id 'com.android.library' version '7.1.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.5.30' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//./gradlew clean -q
+println("hello world groovy")
+
+//base type
+int a = 10
+int b = 10
+String str = "hello world "
+println("a = $a, b = $b , str = $str")
+
+//collection
+def array = [1, 2, 3, 4]
+println("array is $array")
+println("index of array 2 is ${array[2]}")
+array.each {
+    println("each item is $it")
+}
+
+//map
+def map = ["name": "fox", "age": "32"]
+println("map = $map")
+println("age = ${map["age"]}")
+
+//control
+for (int i = 0; i < 10; i++) {
+    if (i > 5) {
+        println("i is $i")
+    }
+}
+
+//function
+def hello(String name) {
+    println("hello , $name")
+}
+
+hello("fox")
+
+//closure
+def c = { println("c1 : Hello, Closure") }
+c()
+def c2 = { println("c2 : Hello, $it") }
+c2("Closure")
+def c3 = { p1, p2 -> println("c3 : $p1, $p2") }
+c3("Hello", "Closure")
+
+//dsl
+class DefaultConfig {
+    private String versionName
+
+    def versionName(String versionName) {
+        this.versionName = versionName
+    }
+
+    @Override
+    String toString() {
+        return "DefaultConfig { version = $versionName}"
+    }
+}
+
+class Android {
+    private int compileSdkVersion
+    private DefaultConfig defaultConfig
+
+    Android() {
+        this.defaultConfig = new DefaultConfig()
+    }
+
+    def compileSdkVersion(int compileSdkVersion) {
+        this.compileSdkVersion = compileSdkVersion
+    }
+
+    def defaultConfig(Closure closure) {
+        //将闭包与具体对象相关联
+        closure.setDelegate(defaultConfig)
+        closure.call()
+    }
+
+    @Override
+    String toString() {
+        return "Android { compileSdkVersion = $compileSdkVersion, defaultConfig = $defaultConfig}"
+    }
+}
+
+def myAndroid = {
+    compileSdkVersion 27
+    defaultConfig {
+        versionName "1.0"
+    }
+}
+
+Android android = new Android()
+myAndroid.delegate = android
+myAndroid.call()
+println("myAndroid = $android")
+/////////////////////////////////////
