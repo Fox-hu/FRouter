@@ -15,18 +15,6 @@ dependencyResolutionManagement {
 rootProject.name = "GradlePractice"
 include ':app', ':router-gradle-plugin'
 
-//apply plugin: 'maven-publish'
-//
-//uploadArchives {
-//    repositories {
-//        repository(url: uri('../repo')) {
-//            pom.groupId = 'com.fox.router'
-//            pom.rtifactId = 'router-gradle-plugin'
-//            pom.version = '1.0.0'
-//        }
-//    }
-//}
-
 println("我是settings.gradle")
 
 //app的构建生命周期

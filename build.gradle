@@ -5,6 +5,25 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.5.30' apply false
     //引入我们自定义的gradle plugin
     id 'com.fox.router'
+    //发版插件
+    id 'maven-publish'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId = 'com.fox.router'
+                artifactId = 'router-gradle-plugin'
+                version = '1.0.0'
+            }
+        }
+        repositories {
+            maven {
+                url = './repo'
+            }
+        }
+    }
 }
 
 //使用extension
