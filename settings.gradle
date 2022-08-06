@@ -19,7 +19,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "GradlePractice"
-include ':app', ':router-gradle-plugin'
+include ':app', ':router-gradle-plugin','router-annotation','router-processor'
 
 println("我是settings.gradle")
 
