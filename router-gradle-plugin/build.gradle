@@ -2,7 +2,25 @@
 //2、设置自定义插件入口,新建src/main/groovy文件夹
 
 plugins {
+    id 'maven-publish'
+    id 'java-gradle-plugin'
     id 'groovy'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.fox.router'
+            artifactId = 'router-gradle-plugin'
+            version = '1.0.0'
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = '../repo'
+        }
+    }
 }
 
 dependencies {
