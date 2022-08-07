@@ -1,17 +1,26 @@
 package com.fox.router.processor;
 
 import com.fox.router.annotations.Destination;
+import com.google.auto.service.AutoService;
 
 import java.util.Collections;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
+import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 
+@AutoService(Processor.class)
 class DestinationProcessor extends AbstractProcessor {
     private static final String TAG = "DestinationProcessor";
+
+    @Override
+    public synchronized void init(ProcessingEnvironment processingEnv) {
+        super.init(processingEnv);
+    }
 
     //要处理哪些注解
     @Override
@@ -34,8 +43,20 @@ class DestinationProcessor extends AbstractProcessor {
 
         //遍历所有@Destination 注解信息 依次获取详细信息
         for (Element element : allElements) {
+            //尝试在当前类中获取注解信息
+            final TypeElement typeElement = (TypeElement) element;
+            Destination destination = typeElement.getAnnotation(Destination.class);
+            if(destination == null) continue;
 
+            //非空 开始解析
+            String url = destination.url();
+            String description = destination.description();
+            //拿到当前类的全路径
+            String realPath = typeElement.getQualifiedName().toString();
+
+            System.out.println(TAG + ">>> url = " + url + " description = " + description + " realPath = " + realPath);
         }
+        System.out.println();
         return false;
     }
 }

@@ -2,6 +2,8 @@ apply plugin:'java'
 
 dependencies {
     implementation project(':router-annotation')
+    implementation 'com.google.auto.service:auto-service:1.0-rc6'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc6'
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8

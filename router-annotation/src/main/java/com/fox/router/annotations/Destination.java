@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
  * @Date 2022/8/6 23:44
  *
  */
-@Target({ElementType.ANNOTATION_TYPE})
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Destination {
     //当前页面的url 不能为空
