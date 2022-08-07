@@ -1,5 +1,7 @@
 apply plugin:'java'
 
+apply from:rootProject.file("maven-publish.gradle")
+
 dependencies {
     implementation project(':router-annotation')
     implementation 'com.google.auto.service:auto-service:1.0-rc6'
