@@ -17,3 +17,5 @@ local.properties
 
 # Project exclude paths
 /buildSrc/build/
+/router-annotation/build
+/router-processor/build
