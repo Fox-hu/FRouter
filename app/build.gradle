@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+        classpath "com.fox.router:router-gradle-plugin:1.0.0"
+    }
+}
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'

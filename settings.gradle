@@ -19,27 +19,32 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "GradlePractice"
-include ':app', ':router-gradle-plugin','router-annotation','router-processor'
+include ':app', ':router-gradle-plugin', 'router-annotation', 'router-processor'
 
 println("我是settings.gradle")
 
 //app的构建生命周期
 gradle.addBuildListener(new BuildAdapter() {
-    @java.lang.Override
+    @Override
     void settingsEvaluated(Settings settings) {
         super.settingsEvaluated(settings)
         println("初始化阶段完成")
     }
 
-    @java.lang.Override
+    @Override
     void projectsEvaluated(Gradle gradle) {
         super.projectsEvaluated(gradle)
         println("配置阶段完成")
     }
 
-    @java.lang.Override
+    @Override
     void buildFinished(BuildResult result) {
         super.buildFinished(result)
         println("构建结束")
     }
 })
+
+//打印所有构建的任务名称
+gradle.taskGraph.beforeTask { task ->
+    println("[all-task]" + task.name)
+}
