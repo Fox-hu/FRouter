@@ -6,8 +6,26 @@ import org.gradle.api.Project
 class RouterPlugin implements Plugin<Project> {
 
     //实现apply方法 注入插件逻辑
-    @java.lang.Override
+    @Override
     void apply(Project project) {
+        //1.自动帮助用户传递路径参数到注解处理器中
+        //2.实现旧构建产物的自动清理
+        //3.在javac任务后 汇总生成文档
+        /**
+         *     kapt {
+         *         arguments {
+         *             arg("root_project_dir", rootProject.projectDir.absolutePath)
+         *         }
+         *     }
+         */
+
+        println("get root project dir")
+        if (project.extensions.findByName("kapt") != null) {
+            project.extensions.findByName("kapt").arguments {
+                arg("root_project_dir",project.getRootProject().projectDir.absolutePath)
+            }
+        }
+
         println("from RouterPlugin, apply from ${project.name}")
         //注册extension
         project.getExtensions().create("router", RouterExtension)

@@ -2,11 +2,14 @@ package com.fox.router.processor;
 
 import com.fox.router.annotations.Destination;
 import com.google.auto.service.AutoService;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.Writer;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -42,7 +45,15 @@ public class DestinationProcessor extends AbstractProcessor {
     //怎么处理这些目标注解
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+        //避免多次调用
+        if (roundEnvironment.processingOver()) {
+            return false;
+        }
         logger.info(">>> process start ...");
+
+        String rootDir = processingEnv.getOptions().get("root_project_dir");
+        logger.info(">>> rootDir is " + rootDir);
+
         //获取所有标记了@Destination 注解的类的信息
         Set<? extends Element> allElements = roundEnvironment.getElementsAnnotatedWith(
                 Destination.class);
@@ -64,6 +75,8 @@ public class DestinationProcessor extends AbstractProcessor {
         builder.append("   public static Map<String, String> get() {  \n");
         builder.append("      HashMap<String, String> mapping = new HashMap<>();\n");
 
+        final JsonArray destinationJsonArray = new JsonArray();
+
         //遍历所有@Destination 注解信息 依次获取详细信息
         for (Element element : allElements) {
             //尝试在当前类中获取注解信息
@@ -80,9 +93,15 @@ public class DestinationProcessor extends AbstractProcessor {
             String realPath = typeElement.getQualifiedName().toString();
 
             logger.info(">>> url = " + url + " description = " + description + " realPath = " +
-                        realPath);
+                    realPath);
             builder.append("      ").append("mapping.put(").append("\"" + url + "\"").append(",")
                     .append("\"" + realPath + "\"").append(");\n");
+
+            JsonObject item = new JsonObject();
+            item.addProperty("url", url);
+            item.addProperty("description", description);
+            item.addProperty("realPath", realPath);
+            destinationJsonArray.add(item);
         }
 
         builder.append("      return mapping;\n");
@@ -101,6 +120,31 @@ public class DestinationProcessor extends AbstractProcessor {
         } catch (Exception ex) {
             throw new RuntimeException("Error while create file ", ex);
         }
+
+        //写json到本地文件中
+        //检测父目录是否存在
+        File rootDirFile = new File(rootDir);
+        if (!rootDirFile.exists()) {
+            throw new RuntimeException("root project dir not exist!");
+        }
+
+        //创建子目录
+        File routerFileDir = new File(rootDirFile, "router_mapping");
+        if (!routerFileDir.exists()) {
+            routerFileDir.mkdir();
+        }
+        //写json文件
+        File mappingFile = new File(routerFileDir, "mapping_" + System.currentTimeMillis() + ".json");
+        try {
+            BufferedWriter out = new BufferedWriter(new FileWriter(mappingFile));
+            String jsonStr = destinationJsonArray.toString();
+            out.write(jsonStr);
+            out.flush();
+            out.close();
+        } catch (Throwable throwable) {
+            throw new RuntimeException("Error while writing json", throwable);
+        }
+
         logger.info(">>> processor end");
         return false;
     }
