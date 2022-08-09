@@ -38,12 +38,16 @@ class RouterMappingTransform extends Transform {
         //2.对input进行二次处理
         //3.将input拷贝到目标目录
         //文件分为两类 目录类型和jar类型 两者都需要处理
+
+        RouterMappingCollector collector = new RouterMappingCollector()
+
         transformInvocation.inputs.each {
             //处理文件夹类型
             it.directoryInputs.each { directoryInput ->
                 def destDir = transformInvocation.outputProvider.getContentLocation(
                         directoryInput.name, directoryInput.contentTypes, directoryInput.scopes, Format.DIRECTORY
                 )
+                collector.collect(directoryInput.file)
                 //将文件夹类型的文件拷贝到目标目录
                 FileUtils.copyDirectory(directoryInput.file, destDir)
             }
@@ -52,9 +56,11 @@ class RouterMappingTransform extends Transform {
                 def dest = transformInvocation.outputProvider.getContentLocation(
                         jarInput.name, jarInput.contentTypes, jarInput.scopes, Format.JAR
                 )
+                collector.collectFromJarFile(jarInput.file)
                 //将jar类型的文件拷贝到目标目录
                 FileUtils.copyFile(jarInput.file, dest)
             }
         }
+        println("${getName()} all mapping class name = " + collector.mappingClassName)
     }
 }

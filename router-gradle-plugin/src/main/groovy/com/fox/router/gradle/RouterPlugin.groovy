@@ -52,6 +52,7 @@ class RouterPlugin implements Plugin<Project> {
         println("from RouterPlugin, apply from ${project.name}")
         //注册extension
         project.getExtensions().create("router", RouterExtension)
+        //在配置阶段结束后
         project.afterEvaluate {
             //获取用户配置的插件参数
             RouterExtension extension = project["router"]

@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath "com.fox.router:router-gradle-plugin:1.0.1"
+        classpath "com.fox.router:router-gradle-plugin:1.0.0"
     }
 }
 

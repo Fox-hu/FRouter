@@ -27,11 +27,11 @@
         {
           "name": "router-gradle-plugin-1.0.0.jar",
           "url": "router-gradle-plugin-1.0.0.jar",
-          "size": 27020,
-          "sha512": "301b36757845d5d0242dc930c6c113fe4bf466b9c616596c7deafe49046194aa5cc3d65aebdd015ac3ff5f7acbf6040534129f9fb45ad565e3c81b41f1f06da9",
-          "sha256": "41f0d25c6738507fd8c0f4bb3fc580e51bfd5a08911cdbd84c74d276eac42db3",
-          "sha1": "eb910cc5881e178edca67f0c4bb57c6db4ca69f8",
-          "md5": "67cad7d72d19bc63a8d24ecc1107fb29"
+          "size": 32094,
+          "sha512": "5115d0cf9c27b17258115fb84cf57606647b451196ca92f5e34f7dc78d23341bd79f61cc951599de7f97caa914836980791a22671ea19006c6d7af8345779eee",
+          "sha256": "35b131c2ca0a05729d84ba6fcd9f78065c8b3e6101d84e67506376b702cbd0d1",
+          "sha1": "f03c3bfaae47fa1b6528d2320b8be0e1158c5d88",
+          "md5": "b19e613ce6bd1c8785cd9423f8b4b57f"
         }
       ]
     },
@@ -57,11 +57,11 @@
         {
           "name": "router-gradle-plugin-1.0.0.jar",
           "url": "router-gradle-plugin-1.0.0.jar",
-          "size": 27020,
-          "sha512": "301b36757845d5d0242dc930c6c113fe4bf466b9c616596c7deafe49046194aa5cc3d65aebdd015ac3ff5f7acbf6040534129f9fb45ad565e3c81b41f1f06da9",
-          "sha256": "41f0d25c6738507fd8c0f4bb3fc580e51bfd5a08911cdbd84c74d276eac42db3",
-          "sha1": "eb910cc5881e178edca67f0c4bb57c6db4ca69f8",
-          "md5": "67cad7d72d19bc63a8d24ecc1107fb29"
+          "size": 32094,
+          "sha512": "5115d0cf9c27b17258115fb84cf57606647b451196ca92f5e34f7dc78d23341bd79f61cc951599de7f97caa914836980791a22671ea19006c6d7af8345779eee",
+          "sha256": "35b131c2ca0a05729d84ba6fcd9f78065c8b3e6101d84e67506376b702cbd0d1",
+          "sha1": "f03c3bfaae47fa1b6528d2320b8be0e1158c5d88",
+          "md5": "b19e613ce6bd1c8785cd9423f8b4b57f"
         }
       ]
     }
