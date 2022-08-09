@@ -1,5 +1,8 @@
 package com.fox.router.gradle
 
+import com.android.build.api.transform.Transform
+import com.android.build.gradle.AppExtension
+import com.android.build.gradle.AppPlugin
 import groovy.json.JsonSlurper
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -9,6 +12,13 @@ class RouterPlugin implements Plugin<Project> {
     //实现apply方法 注入插件逻辑
     @Override
     void apply(Project project) {
+        //在app的gradle中注册Transform
+        if (project.plugins.hasPlugin(AppPlugin)) {
+            AppExtension appExtension = project.extensions.getByType(AppExtension)
+            Transform transform = new RouterMappingTransform()
+            appExtension.registerTransform(transform)
+        }
+
         //1.自动帮助用户传递路径参数到注解处理器中
         //2.实现旧构建产物的自动清理
         //3.在javac任务后 汇总生成文档
@@ -32,6 +42,11 @@ class RouterPlugin implements Plugin<Project> {
                 println("delete dir = ${routerMappingDir.absolutePath}")
                 routerMappingDir.deleteDir()
             }
+        }
+
+        //下面的流程只需要走一遍 就在app module中做了就好
+        if(!project.plugins.hasPlugin(AppPlugin)){
+            return
         }
 
         println("from RouterPlugin, apply from ${project.name}")

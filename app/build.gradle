@@ -1,6 +1,6 @@
 buildscript {
     dependencies {
-        classpath "com.fox.router:router-gradle-plugin:1.0.0"
+        classpath "com.fox.router:router-gradle-plugin:1.0.1"
     }
 }
 
@@ -50,6 +50,8 @@ dependencies {
     implementation project(':router-annotation')
     //一定要用kapt 否则annotation process的日志不打印
     kapt project(':router-processor')
+
+    implementation project(':biz-read')
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.3.0'

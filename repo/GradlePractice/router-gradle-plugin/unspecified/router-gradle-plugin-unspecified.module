@@ -27,11 +27,11 @@
         {
           "name": "router-gradle-plugin-unspecified.jar",
           "url": "router-gradle-plugin-unspecified.jar",
-          "size": 19286,
-          "sha512": "73c10022fc47d425c759e993fdbd75fafa15c1bc4cc2f4d61b2214b562d8390eadbcebdee149ce6beccb270f64df92339cc48a48c0c97601505f2287d670cc49",
-          "sha256": "725fb9546c1d6f75f507bb964acbae27f0bdafbf060bf9155ecf56ae5b50070b",
-          "sha1": "dfbd6974572a6b6005120ab3b598c176b4bb7de7",
-          "md5": "ec2da823d78426d2f59e3ec52b7c5f57"
+          "size": 27064,
+          "sha512": "791ac9879b24d43ec436e775c0bf02b09f3b30dc6279306e1b0ef131f512e64219553a5f4b29230a991ebb19e50ee06d97c88cf3e45d0aaba44b070d3149ca7b",
+          "sha256": "0dc3484d874a2abe0022285b5d9e9e25c25358be0092d00a591046a36e2acd1a",
+          "sha1": "8e7db085337c4ea19efa0b24ed208bcac4ccc6f5",
+          "md5": "ee35a657708f257b396689d853c694c7"
         }
       ]
     },
@@ -44,15 +44,24 @@
         "org.gradle.libraryelements": "jar",
         "org.gradle.usage": "java-runtime"
       },
+      "dependencies": [
+        {
+          "group": "com.android.tools.build",
+          "module": "gradle",
+          "version": {
+            "requires": "3.5.0"
+          }
+        }
+      ],
       "files": [
         {
           "name": "router-gradle-plugin-unspecified.jar",
           "url": "router-gradle-plugin-unspecified.jar",
-          "size": 19286,
-          "sha512": "73c10022fc47d425c759e993fdbd75fafa15c1bc4cc2f4d61b2214b562d8390eadbcebdee149ce6beccb270f64df92339cc48a48c0c97601505f2287d670cc49",
-          "sha256": "725fb9546c1d6f75f507bb964acbae27f0bdafbf060bf9155ecf56ae5b50070b",
-          "sha1": "dfbd6974572a6b6005120ab3b598c176b4bb7de7",
-          "md5": "ec2da823d78426d2f59e3ec52b7c5f57"
+          "size": 27064,
+          "sha512": "791ac9879b24d43ec436e775c0bf02b09f3b30dc6279306e1b0ef131f512e64219553a5f4b29230a991ebb19e50ee06d97c88cf3e45d0aaba44b070d3149ca7b",
+          "sha256": "0dc3484d874a2abe0022285b5d9e9e25c25358be0092d00a591046a36e2acd1a",
+          "sha1": "8e7db085337c4ea19efa0b24ed208bcac4ccc6f5",
+          "md5": "ee35a657708f257b396689d853c694c7"
         }
       ]
     }

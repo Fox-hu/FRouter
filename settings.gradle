@@ -48,3 +48,4 @@ gradle.addBuildListener(new BuildAdapter() {
 gradle.taskGraph.beforeTask { task ->
     println("[all-task]" + task.name)
 }
+include ':biz-read'
