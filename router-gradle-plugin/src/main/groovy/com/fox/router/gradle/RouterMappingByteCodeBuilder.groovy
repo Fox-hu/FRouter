@@ -31,17 +31,17 @@ class RouterMappingByteCodeBuilder implements Opcodes {
         MethodVisitor mv
 
         // 创建构造方法
-        mv = cw.visitMethod(Opcodes.ACC_PUBLIC,
+        mv = cw.visitMethod(ACC_PUBLIC,
                 "<init>",
                 "()V",
                 null,
                 null)
 
         mv.visitCode()
-        mv.visitVarInsn(Opcodes.ALOAD, 0)
-        mv.visitMethodInsn(Opcodes.INVOKESPECIAL,
+        mv.visitVarInsn(ALOAD, 0)
+        mv.visitMethodInsn(INVOKESPECIAL,
                 "java/lang/Object", "<init>", "()V", false)
-        mv.visitInsn(Opcodes.RETURN)
+        mv.visitInsn(RETURN)
         mv.visitMaxs(1, 1)
         mv.visitEnd()
 
